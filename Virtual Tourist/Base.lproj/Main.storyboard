@@ -35,9 +35,6 @@
                     <navigationItem key="navigationItem" title="Virtual Tourist" id="QXG-Bq-YmT">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="8I7-Xp-Ro5">
                             <color key="tintColor" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="JRW-ly-7Be" kind="show" id="J1y-OU-85C"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -203,7 +200,4 @@
     <resources>
         <image name="icon_back-arrow" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="J1y-OU-85C"/>
-    </inferredMetricsTieBreakers>
 </document>
