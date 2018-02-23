@@ -96,6 +96,9 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LVT-Rc-zew">
+                                                            <rect key="frame" x="30" y="30" width="20" height="20"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
@@ -103,12 +106,15 @@
                                                     <constraint firstAttribute="bottom" secondItem="Edj-Wj-LKo" secondAttribute="bottom" id="4Gl-rD-d3D"/>
                                                     <constraint firstItem="Edj-Wj-LKo" firstAttribute="leading" secondItem="r4s-f5-a5Q" secondAttribute="leading" id="6Bd-pm-ePa"/>
                                                     <constraint firstAttribute="trailing" secondItem="lNo-mQ-px7" secondAttribute="trailing" id="7tj-Qn-NZL"/>
+                                                    <constraint firstItem="LVT-Rc-zew" firstAttribute="centerX" secondItem="r4s-f5-a5Q" secondAttribute="centerX" id="K2F-SH-nIN"/>
                                                     <constraint firstAttribute="trailing" secondItem="Edj-Wj-LKo" secondAttribute="trailing" id="PwO-x7-h2p"/>
+                                                    <constraint firstItem="LVT-Rc-zew" firstAttribute="centerY" secondItem="r4s-f5-a5Q" secondAttribute="centerY" id="Znf-nS-yZs"/>
                                                     <constraint firstItem="Edj-Wj-LKo" firstAttribute="top" secondItem="r4s-f5-a5Q" secondAttribute="top" id="eYJ-JO-GZB"/>
                                                     <constraint firstItem="lNo-mQ-px7" firstAttribute="leading" secondItem="r4s-f5-a5Q" secondAttribute="leading" id="sz4-CC-wM8"/>
                                                     <constraint firstItem="lNo-mQ-px7" firstAttribute="top" secondItem="r4s-f5-a5Q" secondAttribute="top" id="tUR-k3-6zn"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="activityIndicator" destination="LVT-Rc-zew" id="wqa-6C-5zO"/>
                                                     <outlet property="highlightedView" destination="lNo-mQ-px7" id="uvu-fr-EEL"/>
                                                     <outlet property="mainImageView" destination="Edj-Wj-LKo" id="lF4-PW-Aer"/>
                                                 </connections>
@@ -128,6 +134,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUR-GP-iBE">
                                                 <rect key="frame" x="135" y="5" width="104" height="30"/>
                                                 <state key="normal" title="New Collection"/>
+                                                <connections>
+                                                    <action selector="updateCollectionView:" destination="JRW-ly-7Be" eventType="touchUpInside" id="K3S-mO-qMm"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,7 +161,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kil-O0-kzg">
                         <barButtonItem key="leftBarButtonItem" style="done" id="Uyw-TL-2BY">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cwl-u1-2k6">
+                            <button key="customView" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cwl-u1-2k6">
                                 <rect key="frame" x="16" y="10" width="49" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="OK" image="icon_back-arrow">
@@ -165,7 +174,7 @@
                     <connections>
                         <outlet property="collectionView" destination="KDH-GD-wFS" id="88r-gk-BRd"/>
                         <outlet property="mapView" destination="2fV-uW-Mhg" id="8eT-SY-p0R"/>
-                        <outlet property="updateButton" destination="PUR-GP-iBE" id="wLt-oc-Jb4"/>
+                        <outlet property="updateButton" destination="PUR-GP-iBE" id="F7Z-KH-kQV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbW-KF-Rz0" userLabel="First Responder" sceneMemberID="firstResponder"/>

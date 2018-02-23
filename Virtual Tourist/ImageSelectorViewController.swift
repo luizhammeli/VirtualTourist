@@ -15,6 +15,8 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var updateButton: UIButton!
     
+    var photos = [Photo(id: 0, color: UIColor.red), Photo(id: 1, color: UIColor.blue), Photo(id: 2, color: UIColor.green), Photo(id: 3, color: UIColor.purple), Photo(id: 4, color: UIColor.orange)]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
@@ -28,12 +30,12 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! ImageCollectionViewCell
-        cell.backgroundColor = .black
+        cell.backgroundColor = photos[indexPath.item].color
         return cell
     }
     
@@ -78,5 +80,20 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         updateButton.setTitle("New Collection", for: .normal)
+    }
+
+    @IBAction func updateCollectionView(_ sender: Any) {
+        guard let selectedCells = collectionView.indexPathsForSelectedItems else {return}
+        for indexPath in selectedCells{
+            for index in 0...photos.count-1{
+                if(photos[index].id == photos[indexPath.item].id){
+                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
+                    cell.highlightedView.isHidden = true
+                    photos.remove(at: index)
+                    break
+                }
+            }
+        }
+        self.collectionView.reloadData()
     }
 }

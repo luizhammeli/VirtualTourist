@@ -12,5 +12,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var highlightedView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 }

@@ -14,6 +14,7 @@
 		73CF83BF203EFDB1006BEE63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CF83BD203EFDB1006BEE63 /* Main.storyboard */; };
 		73CF83C1203EFDB1006BEE63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73CF83C0203EFDB1006BEE63 /* Assets.xcassets */; };
 		73CF83C4203EFDB1006BEE63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CF83C2203EFDB1006BEE63 /* LaunchScreen.storyboard */; };
+		73D1C1EE20404125004E6BF9 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C1ED20404125004E6BF9 /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		73CF83C0203EFDB1006BEE63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73CF83C3203EFDB1006BEE63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73CF83C5203EFDB1006BEE63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D1C1ED20404125004E6BF9 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */,
 				73CF83BB203EFDB1006BEE63 /* MapViewController.swift */,
 				38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */,
+				73D1C1ED20404125004E6BF9 /* Photo.swift */,
 				38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */,
 				73CF83BD203EFDB1006BEE63 /* Main.storyboard */,
 				73CF83C0203EFDB1006BEE63 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				38E8A75B203F9B6A002BEF07 /* ImageSelectorViewController.swift in Sources */,
 				38E8A75D203F9EE7002BEF07 /* ImageCollectionViewCell.swift in Sources */,
 				73CF83BA203EFDB1006BEE63 /* AppDelegate.swift in Sources */,
+				73D1C1EE20404125004E6BF9 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

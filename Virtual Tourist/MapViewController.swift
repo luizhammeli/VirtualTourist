@@ -15,6 +15,15 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(addPin)))
+    }
+    
+    @objc func addPin(sender: UIGestureRecognizer){
+        let point = sender.location(in: mapView)
+        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+        let anonotation = MKPointAnnotation()
+        anonotation.coordinate = coordinate
+        mapView.addAnnotation(anonotation)
     }
 }
 
