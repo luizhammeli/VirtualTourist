@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38E8A75B203F9B6A002BEF07 /* ImageSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */; };
+		38E8A75D203F9EE7002BEF07 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */; };
 		73CF83BA203EFDB1006BEE63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */; };
 		73CF83BC203EFDB1006BEE63 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CF83BB203EFDB1006BEE63 /* MapViewController.swift */; };
 		73CF83BF203EFDB1006BEE63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CF83BD203EFDB1006BEE63 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorViewController.swift; sourceTree = "<group>"; };
+		38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CF83B6203EFDB1006BEE63 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73CF83BB203EFDB1006BEE63 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 			children = (
 				73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */,
 				73CF83BB203EFDB1006BEE63 /* MapViewController.swift */,
+				38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */,
+				38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */,
 				73CF83BD203EFDB1006BEE63 /* Main.storyboard */,
 				73CF83C0203EFDB1006BEE63 /* Assets.xcassets */,
 				73CF83C2203EFDB1006BEE63 /* LaunchScreen.storyboard */,
@@ -137,6 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CF83BC203EFDB1006BEE63 /* MapViewController.swift in Sources */,
+				38E8A75B203F9B6A002BEF07 /* ImageSelectorViewController.swift in Sources */,
+				38E8A75D203F9EE7002BEF07 /* ImageCollectionViewCell.swift in Sources */,
 				73CF83BA203EFDB1006BEE63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
