@@ -21,11 +21,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @objc func addPin(sender: UIGestureRecognizer){
-        let point = sender.location(in: mapView)
-        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
-        let anonotation = MKPointAnnotation()
-        anonotation.coordinate = coordinate
-        mapView.addAnnotation(anonotation)
+        if sender.state == .began {
+            if (editMode){return}
+            let point = sender.location(in: mapView)
+            let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+            let anonotation = MKPointAnnotation()
+            anonotation.coordinate = coordinate
+            mapView.addAnnotation(anonotation)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -45,24 +48,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
+        if (!editMode){
+            self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
+        }else{
+            guard let annotation = view.annotation else {return}
+            mapView.removeAnnotation(annotation)
+        }
     }
     
     @IBAction func handleEditButton(_ sender: Any) {
         editMode = !editMode
         var yValue: CGFloat = 0
         
-        editMode ? 
-        if(editMode){
-            yValue = self.mapView.frame.origin.y-60
-        }else{
-            yValue = self.mapView.frame.origin.y+60
-        }
+        yValue = editMode ? self.mapView.frame.origin.y-60 : self.mapView.frame.origin.y+60
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             self.mapView.frame.origin.y = yValue
-            
         }, completion: nil)
     }
     
@@ -74,4 +75,3 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 }
-

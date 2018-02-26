@@ -115,8 +115,7 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.pinTintColor = .red
-        }
-        else {
+        }else{
             pinView!.annotation = annotation
         }
         
