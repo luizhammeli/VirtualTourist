@@ -157,15 +157,10 @@
                         <viewLayoutGuide key="safeArea" id="zWm-kk-o23"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kil-O0-kzg">
-                        <barButtonItem key="leftBarButtonItem" style="done" id="Uyw-TL-2BY">
-                            <button key="customView" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cwl-u1-2k6">
-                                <rect key="frame" x="16" y="10" width="49" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="OK" image="icon_back-arrow">
-                                    <color key="titleColor" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <color key="tintColor" red="0.22514807349999999" green="0.43362458009999999" blue="0.87520378830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <barButtonItem key="leftBarButtonItem" title="OK" style="done" id="IF5-rT-IaF">
+                            <connections>
+                                <action selector="returnToMapViewController:" destination="JRW-ly-7Be" id="iv4-bN-HTv"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -197,7 +192,4 @@
             <point key="canvasLocation" x="-518" y="133"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="icon_back-arrow" width="24" height="24"/>
-    </resources>
 </document>

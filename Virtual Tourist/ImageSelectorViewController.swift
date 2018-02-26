@@ -9,17 +9,27 @@
 import UIKit
 import MapKit
 
-class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MKMapViewDelegate{
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var updateButton: UIButton!
+    var annotation: MKAnnotation?
     
     var photos = [Photo(id: 0, color: UIColor.red), Photo(id: 1, color: UIColor.blue), Photo(id: 2, color: UIColor.green), Photo(id: 3, color: UIColor.purple), Photo(id: 4, color: UIColor.orange)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         setUpViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let annotation = annotation{
+            mapView.addAnnotation(annotation)
+            mapView.showAnnotations(mapView.annotations, animated: true)
+        }
     }
     
     func setUpViews(){
@@ -95,5 +105,24 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
         self.collectionView.reloadData()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.pinTintColor = .red
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }    
+    @IBAction func returnToMapViewController(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }

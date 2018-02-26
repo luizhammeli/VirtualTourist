@@ -44,8 +44,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(123)
-        self.performSegue(withIdentifier: "showImageSelectorViewController", sender: self)
+        self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showImageSelectorViewController"){
+            let destination = segue.destination as! ImageSelectorViewController
+            guard let annotationView = sender as? MKAnnotationView else {return}
+            destination.annotation = annotationView.annotation
+        }
     }
 }
 
