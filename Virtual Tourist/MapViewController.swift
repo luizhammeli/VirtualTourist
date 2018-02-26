@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView:MKMapView!
+    var editMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
+    }
+    
+    @IBAction func handleEditButton(_ sender: Any) {
+        editMode = !editMode
+        var yValue: CGFloat = 0
+        
+        editMode ? 
+        if(editMode){
+            yValue = self.mapView.frame.origin.y-60
+        }else{
+            yValue = self.mapView.frame.origin.y+60
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            self.mapView.frame.origin.y = yValue
+            
+        }, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

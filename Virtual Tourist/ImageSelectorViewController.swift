@@ -121,7 +121,8 @@ class ImageSelectorViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         return pinView
-    }    
+    }
+    
     @IBAction func returnToMapViewController(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
