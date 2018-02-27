@@ -22,6 +22,7 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         super.viewDidLoad()
         mapView.delegate = self
         setUpViews()
+        loadImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +30,12 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         if let annotation = annotation{
             mapView.addAnnotation(annotation)
             mapView.showAnnotations(mapView.annotations, animated: true)
+        }
+    }
+    
+    func loadImage(){
+        if let annotation = annotation{
+            FlickrClient.shared.getFlickrImages(bbox: "\(annotation.coordinate.longitude), \(annotation.coordinate.latitude), \(annotation.coordinate.longitude+1), \(annotation.coordinate.latitude+1)")
         }
     }
     

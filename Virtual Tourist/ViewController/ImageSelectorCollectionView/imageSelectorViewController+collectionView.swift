@@ -15,8 +15,9 @@ extension ImageSelectorViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! ImageCollectionViewCell
-        cell.backgroundColor = photos[indexPath.item].color
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as!
+        ImageCollectionViewCell
+        //cell.mainImageView.image = #imageLiteral(resourceName: "london")
         return cell
     }
     

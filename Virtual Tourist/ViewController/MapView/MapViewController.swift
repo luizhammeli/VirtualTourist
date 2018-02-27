@@ -51,7 +51,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         guard let annotation = view.annotation else {return}
         mapView.deselectAnnotation(annotation, animated: true)
         if (!editMode){
-            self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
+            self.performSegue(withIdentifier: Strings.ShowImageSelectorSegue, sender: view)
         }else{
             mapView.removeAnnotation(annotation)
         }
@@ -65,11 +65,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.mapView.frame.origin.y = yValue
+            self.navigationItem.rightBarButtonItem?.title = self.editMode ? "Done": "Edit"
         }, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showImageSelectorViewController"){
+        if(segue.identifier == Strings.ShowImageSelectorSegue){
             let destination = segue.destination as! ImageSelectorViewController
             guard let annotationView = sender as? MKAnnotationView else {return}
             destination.annotation = annotationView.annotation
