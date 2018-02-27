@@ -14,24 +14,26 @@ class FlickrClient: NSObject {
     
     func getFlickrImages(bbox: String){
         
-        let url = getFlickrSearchMethodUrl(true, bbox)
+        let url = getFlickrSearchMethodUrl(false, bbox)
         let task = URLSession.shared
         
-//        task.dataTask(with: url) { (data, response, error) in
-//
-//            if let error = error(){
-//                print(error)
-//            }
-//
-//            do{
-//                guard let json = JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) else{return}
-//            }catch let error{
-//                print(error)
-//            }
-//        }
+        task.dataTask(with: url) { (data, response, error) in
+
+            if let error = error{
+                print(error)
+            }
+
+            do{
+                guard let data = data else{return}
+                guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any] else{return}
+                print(json)
+            }catch let error{
+                print(error)
+            }
+        }.resume()
     }
     
-    func getFlickrSearchMethodUrl(_ extras: Bool = false, _ bbox: String) -> URL{
+    func getFlickrSearchMethodUrl(_ extras: Bool? = false, _ bbox: String) -> URL{
         var urlComponent = URLComponents()
         var queryItems = [URLQueryItem]()
         urlComponent.scheme = Flickr.APIScheme
@@ -39,10 +41,11 @@ class FlickrClient: NSObject {
         urlComponent.path = Flickr.APIPath
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.Method, value: FlickrParameterValues.SearchMethod))
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.APIKey, value: FlickrParameterValues.APIKey))
-        queryItems.append(URLQueryItem(name: FlickrParameterKeys.Format, value: FlickrParameterValues.Format))
+        queryItems.append(URLQueryItem(name: FlickrParameterKeys.Format, value: FlickrParameterValues.ResponseFormat))
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.BoundingBox, value: bbox))
-                
-        if(extras){
+        queryItems.append(URLQueryItem(name: FlickrParameterKeys.NoJSONCallback, value: FlickrParameterValues.DisableJSONCallback))
+        
+        if(extras!){
             queryItems.append(URLQueryItem(name: FlickrParameterKeys.Extras, value: FlickrParameterValues.MediumURL))
         }
         
