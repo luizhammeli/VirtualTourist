@@ -78,6 +78,16 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
+		382E73A22044DE6800F3884B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				73CF83BD203EFDB1006BEE63 /* Main.storyboard */,
+				73CF83C0203EFDB1006BEE63 /* Assets.xcassets */,
+				73CF83C2203EFDB1006BEE63 /* LaunchScreen.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		73CF83AD203EFDB1006BEE63 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +107,10 @@
 		73CF83B8203EFDB1006BEE63 /* Virtual Tourist */ = {
 			isa = PBXGroup;
 			children = (
+				382E73A22044DE6800F3884B /* Assets */,
 				382E739D2044DC6600F3884B /* ViewController */,
 				382E739C2044DC5400F3884B /* Model */,
 				73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */,
-				73CF83BD203EFDB1006BEE63 /* Main.storyboard */,
-				73CF83C0203EFDB1006BEE63 /* Assets.xcassets */,
-				73CF83C2203EFDB1006BEE63 /* LaunchScreen.storyboard */,
 				73CF83C5203EFDB1006BEE63 /* Info.plist */,
 			);
 			path = "Virtual Tourist";
