@@ -48,10 +48,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation else {return}
+        mapView.deselectAnnotation(annotation, animated: true)
         if (!editMode){
             self.performSegue(withIdentifier: "showImageSelectorViewController", sender: view)
         }else{
-            guard let annotation = view.annotation else {return}
             mapView.removeAnnotation(annotation)
         }
     }
@@ -62,7 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         yValue = editMode ? self.mapView.frame.origin.y-60 : self.mapView.frame.origin.y+60
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.mapView.frame.origin.y = yValue
         }, completion: nil)
     }

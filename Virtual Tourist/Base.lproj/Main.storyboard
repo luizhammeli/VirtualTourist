@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MsW-LL-jPu">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,31 +15,31 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzz-Ps-NhK">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
-                                <color key="backgroundColor" red="1" green="0.093322322275342873" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rId-v8-yKg">
+                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="fvO-XT-1gq"/>
+                                    <constraint firstAttribute="height" constant="60" id="na4-i5-MpC"/>
                                 </constraints>
-                                <state key="normal" title="Tap Pins to Delete">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-sJ-Abx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dzz-Ps-NhK" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="08f-YM-YST"/>
-                            <constraint firstItem="dzz-Ps-NhK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1cJ-Rt-0os"/>
-                            <constraint firstItem="dzz-Ps-NhK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1eP-3d-0fi"/>
                             <constraint firstItem="Ana-sJ-Abx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6zL-uZ-e4o"/>
                             <constraint firstItem="Ana-sJ-Abx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="77x-jI-Tuu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rId-v8-yKg" secondAttribute="trailing" id="Bgd-Ua-oGp"/>
                             <constraint firstItem="Ana-sJ-Abx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ocd-Oi-Ccl"/>
+                            <constraint firstItem="rId-v8-yKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RFP-KM-qTZ"/>
+                            <constraint firstItem="rId-v8-yKg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="RTW-ks-VFH"/>
                             <constraint firstItem="Ana-sJ-Abx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hbr-dr-BMV"/>
                             <constraint firstItem="Ana-sJ-Abx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="saW-7e-QG3"/>
                         </constraints>
@@ -67,26 +67,26 @@
             <objects>
                 <viewController id="JRW-ly-7Be" customClass="ImageSelectorViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NSt-tp-6de">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="90r-Uy-Suh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2fV-uW-Mhg">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="0r5-h3-la3"/>
                                         </constraints>
                                     </mapView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWU-nc-mFA">
-                                        <rect key="frame" x="0.0" y="130" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="130" width="320" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="8qh-W6-kcD"/>
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KDH-GD-wFS">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="430.5"/>
+                                        <rect key="frame" x="0.0" y="132" width="320" height="243.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVp-Ps-mqW">
                                             <size key="itemSize" width="80" height="80"/>
@@ -135,17 +135,17 @@
                                         </cells>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmw-0w-0d8">
-                                        <rect key="frame" x="0.0" y="562.5" width="375" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="375.5" width="320" height="0.5"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.80000000000000004" id="oau-hQ-wr4"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opM-ck-8Gl">
-                                        <rect key="frame" x="0.0" y="563" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="376" width="320" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUR-GP-iBE">
-                                                <rect key="frame" x="135" y="5" width="104" height="30"/>
+                                                <rect key="frame" x="107.5" y="5" width="104" height="30"/>
                                                 <state key="normal" title="New Collection"/>
                                                 <connections>
                                                     <action selector="updateCollectionView:" destination="JRW-ly-7Be" eventType="touchUpInside" id="K3S-mO-qMm"/>
@@ -195,7 +195,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MsW-LL-jPu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b5K-oW-H4h">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

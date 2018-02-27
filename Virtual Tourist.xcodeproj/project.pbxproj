@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382E73A12044DCE800F3884B /* imageSelectorViewController+collectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E73A02044DCE800F3884B /* imageSelectorViewController+collectionView.swift */; };
 		38E8A75B203F9B6A002BEF07 /* ImageSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */; };
 		38E8A75D203F9EE7002BEF07 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */; };
 		73CF83BA203EFDB1006BEE63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		382E73A02044DCE800F3884B /* imageSelectorViewController+collectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "imageSelectorViewController+collectionView.swift"; sourceTree = "<group>"; };
 		38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorViewController.swift; sourceTree = "<group>"; };
 		38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CF83B6203EFDB1006BEE63 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +43,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		382E739C2044DC5400F3884B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73D1C1ED20404125004E6BF9 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		382E739D2044DC6600F3884B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				382E739F2044DC9A00F3884B /* MapView */,
+				382E739E2044DC7900F3884B /* ImageSelectorCollectionView */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		382E739E2044DC7900F3884B /* ImageSelectorCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */,
+				382E73A02044DCE800F3884B /* imageSelectorViewController+collectionView.swift */,
+				38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */,
+			);
+			path = ImageSelectorCollectionView;
+			sourceTree = "<group>";
+		};
+		382E739F2044DC9A00F3884B /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				73CF83BB203EFDB1006BEE63 /* MapViewController.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
 		73CF83AD203EFDB1006BEE63 = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +97,9 @@
 		73CF83B8203EFDB1006BEE63 /* Virtual Tourist */ = {
 			isa = PBXGroup;
 			children = (
+				382E739D2044DC6600F3884B /* ViewController */,
+				382E739C2044DC5400F3884B /* Model */,
 				73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */,
-				73CF83BB203EFDB1006BEE63 /* MapViewController.swift */,
-				38E8A75A203F9B6A002BEF07 /* ImageSelectorViewController.swift */,
-				73D1C1ED20404125004E6BF9 /* Photo.swift */,
-				38E8A75C203F9EE7002BEF07 /* ImageCollectionViewCell.swift */,
 				73CF83BD203EFDB1006BEE63 /* Main.storyboard */,
 				73CF83C0203EFDB1006BEE63 /* Assets.xcassets */,
 				73CF83C2203EFDB1006BEE63 /* LaunchScreen.storyboard */,
@@ -149,6 +184,7 @@
 				38E8A75B203F9B6A002BEF07 /* ImageSelectorViewController.swift in Sources */,
 				38E8A75D203F9EE7002BEF07 /* ImageCollectionViewCell.swift in Sources */,
 				73CF83BA203EFDB1006BEE63 /* AppDelegate.swift in Sources */,
+				382E73A12044DCE800F3884B /* imageSelectorViewController+collectionView.swift in Sources */,
 				73D1C1EE20404125004E6BF9 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
