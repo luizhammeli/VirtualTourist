@@ -36,6 +36,7 @@ struct FlickrParameterKeys {
     static let Text = "text"
     static let BoundingBox = "bbox"
     static let Page = "page"
+    static let PerPage = "per_page"
 }
 
 struct FlickrParameterValues {

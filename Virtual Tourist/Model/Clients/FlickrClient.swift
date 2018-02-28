@@ -12,24 +12,21 @@ class FlickrClient: NSObject {
     
     static let shared = FlickrClient()
     
-    func getFlickrImages(bbox: String){
+    func taskForGETTMethod(_ url: URL, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void){
         
-        let url = getFlickrSearchMethodUrl(false, bbox)
         let task = URLSession.shared
         
         task.dataTask(with: url) { (data, response, error) in
-
             if let error = error{
                 print(error)
             }
-
-            do{
-                guard let data = data else{return}
-                guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any] else{return}
-                print(json)
-            }catch let error{
-                print(error)
+            
+            guard let response = response as? HTTPURLResponse else {return}
+            
+            if(response.statusCode == 200){
+                completionHandler(data, nil)
             }
+            
         }.resume()
     }
     
@@ -44,6 +41,7 @@ class FlickrClient: NSObject {
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.Format, value: FlickrParameterValues.ResponseFormat))
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.BoundingBox, value: bbox))
         queryItems.append(URLQueryItem(name: FlickrParameterKeys.NoJSONCallback, value: FlickrParameterValues.DisableJSONCallback))
+        queryItems.append(URLQueryItem(name: FlickrParameterKeys.PerPage, value: "21"))
         
         if(extras!){
             queryItems.append(URLQueryItem(name: FlickrParameterKeys.Extras, value: FlickrParameterValues.MediumURL))
@@ -52,5 +50,21 @@ class FlickrClient: NSObject {
         urlComponent.queryItems = queryItems
         
         return urlComponent.url!
+    }
+    
+    func getFlickrImages(bbox: String){
+        let url = getFlickrSearchMethodUrl(true, bbox)
+        taskForGETTMethod(url) { (data, error) in
+            do{
+                guard let data = data else{return}
+                guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any] , let photosDic = json["photos"] as? [String: Any], let totalPages = photosDic["total"] as? String, let photosArray = photosDic["photo"] as? [[String: Any]] else {return}
+                
+                print(photosDic)
+                print(totalPages)
+                
+            }catch let error{
+                print(error)
+            }
+        }
     }
 }

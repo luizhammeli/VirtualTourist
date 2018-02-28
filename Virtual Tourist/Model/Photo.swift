@@ -11,5 +11,5 @@ import Foundation
 
 struct Photo {
     let id: Int
-    let color: UIColor
+    let color: UIColor    
 }
