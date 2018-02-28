@@ -19,6 +19,8 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     var totalPages = 0
     var photos = [[String:Any]]()
     
+    let label = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -38,8 +40,8 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         if let annotation = annotation{
             updateButton.isEnabled = false
             let bbox =  "\(annotation.coordinate.longitude), \(annotation.coordinate.latitude), \(annotation.coordinate.longitude+1), \(annotation.coordinate.latitude+1)"
+            
             FlickrClient.shared.getFlickrImages(bbox, page, completionHandler: { (total, photos, error) in
-                
                 if let _ = error{
                     print("error")
                     return
@@ -49,11 +51,22 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
                 self.totalPages = total
                 self.photos = photos
                 DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                    photos.count > 0 ? self.collectionView.reloadData(): self.showEmptyLabel()
                     self.updateButton.isEnabled = true
                 }                
             })
         }
+    }
+    
+    func showEmptyLabel(){
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        self.view.addSubview(label)
+        label.text = "This pin has no image"
+        self.label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.label.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        self.label.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
     
     func setUpViews(){
