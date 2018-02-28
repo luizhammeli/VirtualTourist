@@ -16,7 +16,8 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var updateButton: UIButton!
     var annotation: MKAnnotation?
     
-    var photos = [Photo(id: 0, color: UIColor.red), Photo(id: 1, color: UIColor.blue), Photo(id: 2, color: UIColor.green), Photo(id: 3, color: UIColor.purple), Photo(id: 4, color: UIColor.orange)]
+    var totalPages = 0
+    var photos = [[String:Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,25 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         }
     }
     
-    func loadImage(){
+    func loadImage(page: String? = nil){
         if let annotation = annotation{
-            FlickrClient.shared.getFlickrImages(bbox: "\(annotation.coordinate.longitude), \(annotation.coordinate.latitude), \(annotation.coordinate.longitude+1), \(annotation.coordinate.latitude+1)")
+            updateButton.isEnabled = false
+            let bbox =  "\(annotation.coordinate.longitude), \(annotation.coordinate.latitude), \(annotation.coordinate.longitude+1), \(annotation.coordinate.latitude+1)"
+            FlickrClient.shared.getFlickrImages(bbox, page, completionHandler: { (total, photos, error) in
+                
+                if let _ = error{
+                    print("error")
+                    return
+                }
+                
+                guard let total = total, let photos = photos else {return}
+                self.totalPages = total
+                self.photos = photos
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.updateButton.isEnabled = true
+                }                
+            })
         }
     }
     
@@ -61,18 +78,29 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     }
 
     @IBAction func updateCollectionView(_ sender: Any) {
-        guard let selectedCells = collectionView.indexPathsForSelectedItems else {return}
-        for indexPath in selectedCells{
-            for index in 0...photos.count-1{
-                if(photos[index].id == photos[indexPath.item].id){
-                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-                    cell.highlightedView.isHidden = true
-                    photos.remove(at: index)
-                    break
-                }
-            }
-        }
+        updateButton.titleLabel?.text == Strings.NewCollectionButtonLabel ? loadNewImages() : removeImage()
+    }
+    
+    func loadNewImages(){
+        self.photos.removeAll()
         self.collectionView.reloadData()
+        let randomPage = Int(arc4random_uniform(UInt32(20)))
+        loadImage(page: "\(randomPage)")
+    }
+    
+    func removeImage(){
+//        guard let selectedCells = collectionView.indexPathsForSelectedItems else {return}
+//        for indexPath in selectedCells{
+//            for index in 0...photos.count-1{
+//                if(photos[index][FlickrParameterValues.MediumURL] as? String == photos[indexPath.item][FlickrParameterValues.MediumURL] as? String){
+//                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
+//                    cell.highlightedView.isHidden = true
+//                    photos.remove(at: index)
+//                    break
+//                }
+//            }
+//        }
+//        self.collectionView.reloadData()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

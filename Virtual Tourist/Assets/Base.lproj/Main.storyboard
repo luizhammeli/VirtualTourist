@@ -86,7 +86,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KDH-GD-wFS">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="430.5"/>
+                                        <rect key="frame" x="0.0" y="132" width="375" height="425.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVp-Ps-mqW">
                                             <size key="itemSize" width="80" height="80"/>
@@ -102,7 +102,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edj-Wj-LKo">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edj-Wj-LKo" customClass="CustomImageView" customModule="Virtual_Tourist" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <color key="backgroundColor" red="0.22514807349999999" green="0.43362458009999999" blue="0.87520378830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </imageView>
@@ -136,17 +136,17 @@
                                         </cells>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmw-0w-0d8">
-                                        <rect key="frame" x="0.0" y="562.5" width="375" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="557.5" width="375" height="0.5"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.80000000000000004" id="oau-hQ-wr4"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opM-ck-8Gl">
-                                        <rect key="frame" x="0.0" y="563" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="558" width="375" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUR-GP-iBE">
-                                                <rect key="frame" x="135" y="5" width="104" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                 <state key="normal" title="New Collection"/>
                                                 <connections>
                                                     <action selector="updateCollectionView:" destination="JRW-ly-7Be" eventType="touchUpInside" id="K3S-mO-qMm"/>
@@ -155,8 +155,12 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="PUR-GP-iBE" firstAttribute="top" secondItem="opM-ck-8Gl" secondAttribute="top" id="1E8-7Z-Hop"/>
+                                            <constraint firstAttribute="bottom" secondItem="PUR-GP-iBE" secondAttribute="bottom" id="CeN-oR-z6O"/>
+                                            <constraint firstItem="PUR-GP-iBE" firstAttribute="leading" secondItem="opM-ck-8Gl" secondAttribute="leading" id="L6f-U3-eLC"/>
                                             <constraint firstItem="PUR-GP-iBE" firstAttribute="centerX" secondItem="opM-ck-8Gl" secondAttribute="centerX" id="Q9A-Ih-j6U"/>
-                                            <constraint firstAttribute="height" constant="40" id="v33-gW-tld"/>
+                                            <constraint firstAttribute="trailing" secondItem="PUR-GP-iBE" secondAttribute="trailing" id="TqV-wo-ZRx"/>
+                                            <constraint firstAttribute="height" constant="45" id="v33-gW-tld"/>
                                             <constraint firstItem="PUR-GP-iBE" firstAttribute="centerY" secondItem="opM-ck-8Gl" secondAttribute="centerY" id="vEu-9i-YLL"/>
                                         </constraints>
                                     </view>
@@ -174,7 +178,7 @@
                         <viewLayoutGuide key="safeArea" id="zWm-kk-o23"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kil-O0-kzg">
-                        <barButtonItem key="leftBarButtonItem" title="OK" style="done" id="IF5-rT-IaF">
+                        <barButtonItem key="leftBarButtonItem" title="OK" style="plain" id="IF5-rT-IaF">
                             <connections>
                                 <action selector="returnToMapViewController:" destination="JRW-ly-7Be" id="iv4-bN-HTv"/>
                             </connections>

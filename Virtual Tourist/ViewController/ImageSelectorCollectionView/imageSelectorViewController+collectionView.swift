@@ -16,8 +16,8 @@ extension ImageSelectorViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as!
-        ImageCollectionViewCell
-        //cell.mainImageView.image = #imageLiteral(resourceName: "london")
+        ImageCollectionViewCell        
+        cell.imageUrl = photos[indexPath.item][FlickrParameterValues.MediumURL] as? String
         return cell
     }
     
