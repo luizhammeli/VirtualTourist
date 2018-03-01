@@ -58,6 +58,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if(segue.identifier == Strings.ShowImageSelectorSegue){
             let destination = segue.destination as! ImageSelectorViewController
             guard let annotationView = sender as? MKAnnotationView else {return}
+            guard let anotation = annotationView.annotation else {return}
+            guard let pin = getPins(anotation) else {return}
+            destination.pin = pin
             destination.annotation = annotationView.annotation
         }
     }

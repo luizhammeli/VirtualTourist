@@ -47,6 +47,7 @@ struct FlickrParameterValues {
     static let MediumURL = "url_m"
     static let UseSafeSearch = "1"
     static let Format = "rest"
+    static let ID = "id"
 }
 
 struct Entity{

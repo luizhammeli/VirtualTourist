@@ -49,13 +49,19 @@ extension MapViewController{
     }
     
     func removePin(_ annotation: MKAnnotation){
+        guard let pin = getPins(annotation) else {return}
+        if (CoreDataManager.share.removePin(pin)){
+            mapView.removeAnnotation(annotation)
+            mapView.showAnnotations(mapView.annotations, animated: true)
+        }
+    }
+    
+    func getPins(_ annotation: MKAnnotation)->Pin?{
         for pin in pins {
             if pin.latitude == Double(annotation.coordinate.latitude) && pin.longitude == Double(annotation.coordinate.longitude){
-                if(CoreDataManager.share.removePin(pin)){
-                    mapView.removeAnnotation(annotation)
-                    mapView.showAnnotations(mapView.annotations, animated: true)
-                }
+                return pin
             }
         }
+        return nil
     }
 }

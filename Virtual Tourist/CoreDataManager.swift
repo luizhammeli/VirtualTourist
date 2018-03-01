@@ -59,4 +59,43 @@ struct CoreDataManager {
         }
         return false
     }
+    
+    func insertPhotos(_ photosDic: [[String:Any]], _ pin: Pin){
+        let context = CoreDataManager.share.persistentContainer.viewContext
+
+        for dic in photosDic{
+            let photo = NSEntityDescription.insertNewObject(forEntityName: Entity.Photo, into: context) as! Photo
+            photo.flickrID = dic[FlickrParameterValues.ID] as? String
+            photo.url = dic[FlickrParameterValues.MediumURL] as? String
+            photo.pin = pin
+            context.insert(photo)
+        }
+        
+        do{
+            try context.save()
+        }catch let error{
+            print(error)
+        }
+    }
+    
+    func fetchPhotos()->[Photo]{
+        let context = CoreDataManager.share.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Photo>(entityName: Entity.Photo)
+        do{
+            let photos = try context.fetch(fetchRequest)
+            return photos
+        }catch let error{
+            print(error)
+        }
+        return [Photo]()
+    }
+    
+    func updatePhotos(_ photo: Photo){
+        let context = CoreDataManager.share.persistentContainer.viewContext
+        do{
+            try context.save()
+        }catch let error{
+            print(error)
+        }
+    }
 }

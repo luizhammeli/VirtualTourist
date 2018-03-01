@@ -15,9 +15,10 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var updateButton: UIButton!
     var annotation: MKAnnotation?
+    var pin: Pin?
     
     var totalPages = 0
-    var photos = [[String:Any]]()
+    var photos = [Photo]()
     
     let label = UILabel()
     
@@ -25,7 +26,6 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         super.viewDidLoad()
         mapView.delegate = self
         setUpViews()
-        loadImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +34,11 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
             mapView.addAnnotation(annotation)
             mapView.showAnnotations(mapView.annotations, animated: true)
         }
+        
+        photos = CoreDataManager.share.fetchPhotos()
+        if photos.count == 0{
+            loadImage()
+        }
     }
     
     func loadImage(page: String? = nil){
@@ -41,17 +46,20 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
             updateButton.isEnabled = false
             let bbox =  "\(annotation.coordinate.longitude), \(annotation.coordinate.latitude), \(annotation.coordinate.longitude+1), \(annotation.coordinate.latitude+1)"
             
-            FlickrClient.shared.getFlickrImages(bbox, page, completionHandler: { (total, photos, error) in
+            FlickrClient.shared.getFlickrImages(bbox, page, completionHandler: { (total, photosDic, error) in
                 if let _ = error{
                     print("error")
                     return
                 }
                 
-                guard let total = total, let photos = photos else {return}
+                guard let total = total, let photosDic = photosDic else {return}
                 self.totalPages = total
-                self.photos = photos
+                
+                guard let pin = self.pin else {return}
+                CoreDataManager.share.insertPhotos(photosDic, pin)
+                self.photos = CoreDataManager.share.fetchPhotos()
                 DispatchQueue.main.async {
-                    photos.count > 0 ? self.collectionView.reloadData(): self.showEmptyLabel()
+                    self.photos.count > 0 ? self.collectionView.reloadData(): self.showEmptyLabel()
                     self.updateButton.isEnabled = true
                 }                
             })
@@ -102,7 +110,6 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     }
     
     func removeImage(){
-
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

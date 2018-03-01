@@ -13,12 +13,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var highlightedView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var imageUrl: String?{
+    var photo: Photo?{
         didSet{
             self.isUserInteractionEnabled = false
-            guard let url = imageUrl else {return}
+            guard let url = photo?.url else {return}
             self.showActivityIndicator(true)
             mainImageView.downloadImage(stringURL: url) {
+                guard let image = self.mainImageView.image else {return}
+                let imageData = UIImageJPEGRepresentation(image, 0.8)
+                self.photo?.image = imageData
                 self.showActivityIndicator(false)
                 self.isUserInteractionEnabled = true
             }
