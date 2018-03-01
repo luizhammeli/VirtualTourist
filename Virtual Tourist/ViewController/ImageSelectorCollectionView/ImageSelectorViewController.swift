@@ -26,6 +26,7 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         super.viewDidLoad()
         mapView.delegate = self
         setUpViews()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +36,9 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
             mapView.showAnnotations(mapView.annotations, animated: true)
         }
         
-        photos = CoreDataManager.share.fetchPhotos()
+        guard let photosArray = pin?.photo?.allObjects as? [Photo] else {return}
+        self.photos = photosArray
+        
         if photos.count == 0{
             loadImage()
         }
@@ -57,7 +60,8 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
                 
                 guard let pin = self.pin else {return}
                 CoreDataManager.share.insertPhotos(photosDic, pin)
-                self.photos = CoreDataManager.share.fetchPhotos()
+                guard let photosArray = pin.photo?.allObjects as? [Photo] else {return}
+                self.photos = photosArray
                 DispatchQueue.main.async {
                     self.photos.count > 0 ? self.collectionView.reloadData(): self.showEmptyLabel()
                     self.updateButton.isEnabled = true

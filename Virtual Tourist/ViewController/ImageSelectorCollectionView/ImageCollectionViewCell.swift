@@ -18,12 +18,13 @@ class ImageCollectionViewCell: UICollectionViewCell {
             self.isUserInteractionEnabled = false
             guard let url = photo?.url else {return}
             self.showActivityIndicator(true)
-            mainImageView.downloadImage(stringURL: url) {
-                guard let image = self.mainImageView.image else {return}
-                let imageData = UIImageJPEGRepresentation(image, 0.8)
-                self.photo?.image = imageData
+            
+            if let imageData = photo?.image{
                 self.showActivityIndicator(false)
-                self.isUserInteractionEnabled = true
+                let image = UIImage(data: imageData)
+                mainImageView.image = image
+            }else{
+                downloadImage(url)
             }
         }
     }
@@ -37,5 +38,17 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func showActivityIndicator(_ show: Bool){
         self.activityIndicator.isHidden = !show
         show ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+    }
+    
+    func downloadImage(_ stringURL: String){
+        mainImageView.downloadImage(stringURL: stringURL) {
+            guard let image = self.mainImageView.image else {return}
+            let imageData = UIImageJPEGRepresentation(image, 0.8)
+            self.photo?.image = imageData
+            guard let photo = self.photo else {return}
+            CoreDataManager.share.updatePhotos(photo)
+            self.showActivityIndicator(false)
+            self.isUserInteractionEnabled = true
+        }
     }
 }
