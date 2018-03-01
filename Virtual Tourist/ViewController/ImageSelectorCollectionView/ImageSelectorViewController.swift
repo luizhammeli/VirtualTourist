@@ -102,18 +102,7 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     }
     
     func removeImage(){
-//        guard let selectedCells = collectionView.indexPathsForSelectedItems else {return}
-//        for indexPath in selectedCells{
-//            for index in 0...photos.count-1{
-//                if(photos[index][FlickrParameterValues.MediumURL] as? String == photos[indexPath.item][FlickrParameterValues.MediumURL] as? String){
-//                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-//                    cell.highlightedView.isHidden = true
-//                    photos.remove(at: index)
-//                    break
-//                }
-//            }
-//        }
-//        self.collectionView.reloadData()
+
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

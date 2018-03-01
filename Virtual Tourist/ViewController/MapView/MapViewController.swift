@@ -13,11 +13,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView:MKMapView!
     var editMode = false
+    var pins = [Pin]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(addPin)))
+        pins = CoreDataManager.share.fetchPins()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        insertPins()
     }
     
     @objc func addPin(sender: UIGestureRecognizer){
@@ -28,32 +35,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let anonotation = MKPointAnnotation()
             anonotation.coordinate = coordinate
             mapView.addAnnotation(anonotation)
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
-        
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.pinTintColor = .red
-        }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation else {return}
-        mapView.deselectAnnotation(annotation, animated: true)
-        if (!editMode){
-            self.performSegue(withIdentifier: Strings.ShowImageSelectorSegue, sender: view)
-        }else{
-            mapView.removeAnnotation(annotation)
+            let tuple = CoreDataManager.share.createPin(Double(coordinate.latitude), Double(coordinate.longitude))
+            
+            guard let pin = tuple.0 else {return}
+            pins.append(pin)
         }
     }
     
