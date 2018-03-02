@@ -101,7 +101,13 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     }
 
     @IBAction func updateCollectionView(_ sender: Any) {
-        updateButton.titleLabel?.text == Strings.NewCollectionButtonLabel ? loadNewImages() : removeImage()
+        if (updateButton.titleLabel?.text == Strings.NewCollectionButtonLabel){
+            if(CoreDataManager.share.removeObject(pin?.photo?.allObjects as! [Photo])){
+                loadNewImages()
+            }            
+            return
+        }
+        removeImage()
     }
     
     func loadNewImages(){
