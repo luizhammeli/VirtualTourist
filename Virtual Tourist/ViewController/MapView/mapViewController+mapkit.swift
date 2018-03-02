@@ -38,21 +38,22 @@ extension MapViewController{
     }
     
     func insertPins(){
+        var annotations = [MKAnnotation]()
         for pin in pins{
             let latitude = CLLocationDegrees(pin.latitude)
             let longitude = CLLocationDegrees(pin.longitude)
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
-            mapView.addAnnotation(annotation)
+            annotations.append(annotation)
         }
+        mapView.addAnnotations(annotations)
     }
     
     func removePin(_ annotation: MKAnnotation){
         guard let pin = getPins(annotation) else {return}
-        if (CoreDataManager.share.removePin(pin)){
+        if (CoreDataManager.share.removeObject([pin])){
             mapView.removeAnnotation(annotation)
-            mapView.showAnnotations(mapView.annotations, animated: true)
         }
     }
     

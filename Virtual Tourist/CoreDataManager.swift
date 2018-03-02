@@ -27,12 +27,10 @@ struct CoreDataManager {
         pin.latitude = latitude
         pin.longitude = longitude
         
-        do{
-            try context.save()
+        if saveContext(){
             return (pin, nil)
-        }catch let error{
-            print(error)
         }
+        
         return (nil, "Error to create Pin")
     }
     
@@ -48,16 +46,14 @@ struct CoreDataManager {
         return [Pin]()
     }
     
-    func removePin(_ pin: Pin)->Bool{
+    func removeObject(_ objects: [NSManagedObject])->Bool{
         let context = CoreDataManager.share.persistentContainer.viewContext
-        context.delete(pin)
-        do{
-            try context.save()
-            return true
-        }catch let error{
-            print(error)
+        
+        for object in objects{
+            context.delete(object)
         }
-        return false
+
+        return saveContext()
     }
     
     func insertPhotos(_ photosDic: [[String:Any]], _ pin: Pin){
@@ -70,12 +66,7 @@ struct CoreDataManager {
             photo.pin = pin
             context.insert(photo)
         }
-        
-        do{
-            try context.save()
-        }catch let error{
-            print(error)
-        }
+        _ = saveContext()
     }
     
     func fetchPhotos()->[Photo]{
@@ -90,12 +81,15 @@ struct CoreDataManager {
         return [Photo]()
     }
     
-    func updatePhotos(_ photo: Photo){
+    func saveContext()->Bool{
         let context = CoreDataManager.share.persistentContainer.viewContext
         do{
             try context.save()
+            return true
         }catch let error{
             print(error)
         }
+        
+        return false
     }
 }

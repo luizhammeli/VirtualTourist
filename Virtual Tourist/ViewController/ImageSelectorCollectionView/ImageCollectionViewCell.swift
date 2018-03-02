@@ -15,10 +15,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     var photo: Photo?{
         didSet{
-            self.isUserInteractionEnabled = false
             guard let url = photo?.url else {return}
-            self.showActivityIndicator(true)
-            
+            self.showActivityIndicator(true)            
             if let imageData = photo?.image{
                 self.showActivityIndicator(false)
                 let image = UIImage(data: imageData)
@@ -41,14 +39,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     func downloadImage(_ stringURL: String){
+        self.isUserInteractionEnabled = false
         mainImageView.downloadImage(stringURL: stringURL) {
             guard let image = self.mainImageView.image else {return}
             let imageData = UIImageJPEGRepresentation(image, 0.8)
             self.photo?.image = imageData
-            guard let photo = self.photo else {return}
-            CoreDataManager.share.updatePhotos(photo)
-            self.showActivityIndicator(false)
-            self.isUserInteractionEnabled = true
+            if CoreDataManager.share.saveContext(){
+                self.showActivityIndicator(false)
+                self.isUserInteractionEnabled = true
+            }
         }
     }
 }

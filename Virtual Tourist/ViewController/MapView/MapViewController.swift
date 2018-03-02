@@ -20,11 +20,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(addPin)))
         pins = CoreDataManager.share.fetchPins()
+        insertPins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        insertPins()
     }
     
     @objc func addPin(sender: UIGestureRecognizer){

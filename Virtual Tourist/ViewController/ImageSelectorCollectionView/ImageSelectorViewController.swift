@@ -14,19 +14,17 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var updateButton: UIButton!
+    
     var annotation: MKAnnotation?
     var pin: Pin?
-    
     var totalPages = 0
     var photos = [Photo]()
-    
     let label = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         setUpViews()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +112,19 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
     }
     
     func removeImage(){
+        guard let selectedIndexPaths = collectionView.indexPathsForSelectedItems else {return}
+        var selectedPhotos = [Photo]()
+        for index in selectedIndexPaths{
+            selectedPhotos.append(photos[index.item])
+            hightlightCell(index, highlighted: true)
+        }
+        
+        if(CoreDataManager.share.removeObject(selectedPhotos)){
+            guard let photosArray = pin?.photo?.allObjects as? [Photo] else {return}
+            self.photos = photosArray
+            changeButtonLabel()
+            collectionView.reloadData()
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

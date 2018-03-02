@@ -39,14 +39,16 @@ extension ImageSelectorViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-        cell.highlightedView.isHidden = false
-        changeButtonLabel()
+        hightlightCell(indexPath, highlighted: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        hightlightCell(indexPath, highlighted: true)
+    }
+    
+    func hightlightCell(_ indexPath: IndexPath, highlighted: Bool){
         let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-        cell.highlightedView.isHidden = true
+        cell.highlightedView.isHidden = highlighted
         changeButtonLabel()
     }
 }
