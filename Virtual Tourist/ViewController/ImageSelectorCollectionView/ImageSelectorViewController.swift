@@ -122,14 +122,15 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         var selectedPhotos = [Photo]()
         for index in selectedIndexPaths{
             selectedPhotos.append(photos[index.item])
+            collectionView.deselectItem(at: index, animated: true)
             hightlightCell(index, highlighted: true)
         }
         
         if(CoreDataManager.share.removeObject(selectedPhotos)){
             guard let photosArray = pin?.photo?.allObjects as? [Photo] else {return}
             self.photos = photosArray
-            changeButtonLabel()
             collectionView.reloadData()
+            changeButtonLabel()
         }
     }
     
