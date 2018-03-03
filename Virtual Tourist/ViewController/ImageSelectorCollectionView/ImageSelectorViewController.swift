@@ -122,8 +122,8 @@ class ImageSelectorViewController: UIViewController, MKMapViewDelegate{
         var selectedPhotos = [Photo]()
         for index in selectedIndexPaths{
             selectedPhotos.append(photos[index.item])
-            collectionView.deselectItem(at: index, animated: true)
             hightlightCell(index, highlighted: true)
+            collectionView.deselectItem(at: index, animated: true)
         }
         
         if(CoreDataManager.share.removeObject(selectedPhotos)){

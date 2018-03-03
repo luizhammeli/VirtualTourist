@@ -104,7 +104,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edj-Wj-LKo" customClass="CustomImageView" customModule="Virtual_Tourist" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                            <color key="backgroundColor" red="0.22514807349999999" green="0.43362458009999999" blue="0.87520378830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="0.078055643365940286" green="0.28646108479169746" blue="0.65744395546344903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <view hidden="YES" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-mQ-px7">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
