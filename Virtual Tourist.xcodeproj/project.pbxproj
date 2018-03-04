@@ -56,6 +56,8 @@
 		382E739C2044DC5400F3884B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7349410F204825F600D9DDE4 /* CoreDataManager.swift */,
+				7349410C204822B100D9DDE4 /* Model.xcdatamodeld */,
 				73244EC42045B1C500C652DE /* Clients */,
 			);
 			path = Model;
@@ -147,10 +149,8 @@
 				382E73A22044DE6800F3884B /* Assets */,
 				382E739D2044DC6600F3884B /* ViewController */,
 				382E739C2044DC5400F3884B /* Model */,
-				7349410F204825F600D9DDE4 /* CoreDataManager.swift */,
 				73CF83B9203EFDB1006BEE63 /* AppDelegate.swift */,
 				73CF83C5203EFDB1006BEE63 /* Info.plist */,
-				7349410C204822B100D9DDE4 /* Model.xcdatamodeld */,
 			);
 			path = "Virtual Tourist";
 			sourceTree = "<group>";

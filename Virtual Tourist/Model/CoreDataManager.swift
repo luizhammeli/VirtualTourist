@@ -84,7 +84,9 @@ struct CoreDataManager {
     func saveContext()->Bool{
         let context = CoreDataManager.share.persistentContainer.viewContext
         do{
-            try context.save()
+            if context.hasChanges{
+                try context.save()
+            }            
             return true
         }catch let error{
             print(error)
